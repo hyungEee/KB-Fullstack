@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function clock(money) {
+        now = new Date();
+        let year = now.getFullYear();
+        let month = ("0" + (now.getMonth() + 1)).slice(-2);
+        let day = ("0" + now.getDate()).slice(-2);
+        let li = document.createElement("li");
+        let hours = ("0" + now.getHours()).slice(-2);
+        let dn = "";
+        if (hours > 12) {
+          dn = "오후";
+          hours -= 12;
+        } else {
+          dn = "오전";
+        }
+        let minutes = ("0" + now.getMinutes()).slice(-2);
+        let seconds = ("0" + now.getSeconds()).slice(-2);
+
+        let ul = document.getElementById("transactionHistory");
+        li.innerText = `${money}원 이체 완료 - ${year}. ${month}. ${day}. ${dn} ${hours}:${minutes}:${seconds}`;
+        ul.append(li);
+      }
+      window.onload = function () {
+        let trans1 = document.querySelectorAll("button")[0];
+        let trans2 = document.querySelectorAll("button")[1];
+        trans1.onclick = function () {
+          clock("100,000");
+        };
+        trans2.onclick = function () {
+          clock("50,000");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <ul id="transactionHistory"></ul>
+
+    <button onclick="addTransaction(100000)">100,000원 이체</button>
+    <button onclick="addTransaction(50000)">50,000원 이체</button>
+  </body>
+</html>

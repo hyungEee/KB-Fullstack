@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Position Property</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        /* default(static)일때와 absolute일 때 화면 비교하기 */
+        /* absolute일때는 뒤에 작성한 코드 태그가 상위로 올라감 */
+      }
+      .box:nth-child(1) {
+        background-color: red;
+      }
+      .box:nth-child(2) {
+        background-color: green;
+      }
+      .box:nth-child(3) {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </body>
+</html>

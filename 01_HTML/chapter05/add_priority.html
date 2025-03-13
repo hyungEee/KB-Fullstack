@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        color: red;
+      }
+      #yellow {
+        color: yellow;
+      }
+      .green {
+        color: green;
+      }
+      * {
+        color: blue;
+      }
+      body {
+        color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="yellow" class="green" style="color: orange">Hello</div>
+    <!--
+    style 우선순위: 
+    !important > inline style > id 선택자 > 클래스 선택자 > 일반 태그 선택자 > 전체(*)선택자
+    9999점      1000점          100점       10점            1점                 0점
+    -->
+  </body>
+</html>

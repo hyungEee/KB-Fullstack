@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 쌓임 순서 기준
+        1. position  가져야함
+        2. position 가진경우 z-index 높은순
+        3. z-index 같은경우 나중에 등장한 요소순 */
+      body {
+        height: 3000px;
+      }
+      .container {
+        width: 400px;
+        background-color: skyblue;
+        position: relative;
+      }
+      .container .item {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        background-color: darkblue;
+        color: white;
+      }
+      .container .item:nth-child(1) {
+        position: relative;
+        z-index: 1;
+      }
+      .container .item:nth-child(2) {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+      }
+      .container .item:nth-child(3) {
+        position: fixed;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">item1</div>
+      <div class="item">item2</div>
+      <div class="item">item3</div>
+    </div>
+  </body>
+</html>

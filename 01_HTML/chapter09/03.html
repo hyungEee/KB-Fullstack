@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let pikachu = { name: "피카츄", hp: 100, attack: 20 };
+      let charmander = { name: "파이리", hp: 80, attack: 15 };
+
+      function attackPokemon(po1, po2) {
+        po2.hp -= po1.attack;
+        if (po2.hp <= 0) {
+          console.log(`${po2.name}이(가) 쓰러졌다!`);
+        } else {
+          console.log(
+            `${po1.name}이(가) ${po2.name}을(를) 공격했다! 남은체력: ${po2.hp}`
+          );
+        }
+      }
+
+      attackPokemon(pikachu, charmander);
+      attackPokemon(charmander, pikachu);
+      attackPokemon(pikachu, charmander);
+      attackPokemon(pikachu, charmander);
+      attackPokemon(pikachu, charmander);
+    </script>
+  </head>
+  <body></body>
+</html>
