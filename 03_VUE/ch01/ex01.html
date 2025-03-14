@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- View 파트, 해당 id 영역을 vue.j가 담당-->
+    <div id="app">
+      <h2>{{message}}</h2>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let model = { message: "Hello Vue3!" }; // Model 파트 (순수하게 데이터만 가짐)
+      let vm = Vue.createApp({
+        // viewModel 객체
+        name: "App",
+        data() {
+          return model;
+        },
+      }).mount("#app"); // 위 코드를 id="app"에 연결함. 초기화 과정에서 항상 등장하는 코드.
+    </script>
+  </body>
+</html>

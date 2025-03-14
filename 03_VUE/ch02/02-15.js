@@ -1,0 +1,12 @@
+let obj = { result: 0 };
+
+obj.add = function (x, y) {
+  // 화살표 함수는 함수가 선언될 때 this가 정의된다.
+  const inner = () => {
+    this.result = x + y;
+  };
+  inner();
+};
+obj.add(3, 4);
+
+console.log(obj); // { result: 7 }

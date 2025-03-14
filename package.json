@@ -1,5 +1,18 @@
 {
   "dependencies": {
-    "git": "^0.1.5"
-  }
+    "git": "^0.1.5",
+    "lodash": "^4.17.21"
+  },
+  "type": "module",
+  "name": "fullstack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
