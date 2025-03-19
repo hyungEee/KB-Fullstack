@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="name" placeholder="이름" />
+      <br />
+      <textarea
+        v-model="letter"
+        style="width: 350px; height: 100px"
+        placeholder="편지 내용"
+      ></textarea>
+      <h3>마음 속 이유 (2개 이상 선택하세요):</h3>
+      <span v-for="r in reasons" :key="r">
+        <label>
+          <input type="checkbox" v-model="check" :value="r" />
+          {{r}}
+        </label>
+      </span>
+      <br />
+      <br />
+      <div>
+        시간:
+        <input type="number" v-model="time" />
+      </div>
+      <br />
+      <div v-if="name.length===0" style="color: red">
+        ⚠ 이름을 입력해주세요.
+      </div>
+      <div v-if="letter.length<200" style="color: red">
+        ⚠ 편지 내용을 200자 이상 작성해주세요. (현재 {{letter.length}}자)
+      </div>
+      <div v-if="check.length<2" style="color: red">
+        ⚠ 이유를 최소 2개이상 선택해주세요.
+      </div>
+      <div v-if="time>=18" style="color: red">
+        ⚠ 현재 시간이 넘 늦었어요! (마감:18시)
+      </div>
+      <br />
+      <button v-if="time<18">마지막 고백 결심하기</button>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            reasons: ["예뻐서", "착해서", "편해서", "웃겨서", "그냥"],
+            check: [],
+            name: "",
+            letter: "",
+            time: 0,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

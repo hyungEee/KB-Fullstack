@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <textarea
+        type="text"
+        v-model="letter"
+        placeholder="편지 내용을 입력하세요"
+        @input="updateLength"
+        style="width: 500px; height: 100px"
+      ></textarea>
+      <br />
+      <div>현재 글자 수: {{length}} 자</div>
+      <div v-if="length<100">
+        등급: D - 아직 시작 단계예요. 천천히 적어봐요!
+      </div>
+      <div v-else-if="length<200">
+        등급: C - 좋아요! 이제 리듬을 타고 있어요.
+      </div>
+      <div v-else-if="length<300">
+        등급: B - 속도 좋습니다! 감정을 더 담아보세요.
+      </div>
+      <div v-else-if="length<400">
+        등급: A - 멋져요! 충분히 마음이 담기고 있어요.
+      </div>
+      <div v-else>등급: S - 폭풍 같은 집중력! 감동의 편지가 될 거예요.</div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            letter: "",
+            length: 0,
+          };
+        },
+        methods: {
+          updateLength() {
+            this.length = this.letter.length;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

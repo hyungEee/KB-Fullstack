@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>추천 장소 TOP</h2>
+      <ul>
+        <li v-for="(p,i) in places" v-show="i<=2">{{i+1}}. {{p}}</li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            places: [
+              "한강공원",
+              "루프탑 카페",
+              "바닷가",
+              "놀이공원",
+              "분수광장",
+            ],
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

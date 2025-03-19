@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3>마음 속 이유 (다중 선택)</h3>
+      <span v-for="r in reasons" :key="r">
+        <label>
+          <input type="checkbox" v-model="check" :value="r" />
+          {{r}}
+        </label>
+      </span>
+      <div v-if="check.length===0">아직 이유를 고르지 않았어요!</div>
+      <div v-else>선택항목 ({{check.length}}개): {{check.join(", ")}}</div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            reasons: ["예뻐서", "착해서", "편해서", "웃겨서", "그냥"],
+            check: [],
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
