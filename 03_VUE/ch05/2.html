@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="onClick" value="엘더" id="0">엘더 지팡이</button>
+      <button @click="onClick" value="단풍" id="1">단풍 지팡이</button>
+      <button @click="onClick" value="벚나무" id="2">벚나무 지팡이</button>
+      <button @click="reset">지팡이 초기화</button>
+      <br />
+      <div v-if="buttonClicked">
+        당신은 <span v-text="wand">{{wand}}</span> 지팡이를 선택했습니다!
+      </div>
+      <div v-if="twiceClicked">
+        이미 <span v-text="wand">{{wand}}</span> 지팡이를 선택했습니다. 다른
+        지팡이를 선택하세요!
+      </div>
+      <div v-if="reseted">지팡이를 다시 선택해주세요.</div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let counts = [0, 0, 0];
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            buttonClicked: false,
+            twiceClicked: false,
+            wand: "",
+            reseted: false,
+          };
+        },
+        methods: {
+          onClick(e) {
+            this.reseted = false;
+            if (counts[e.target.id] >= 1) {
+              this.twiceClicked = true;
+              this.buttonClicked = false;
+            } else {
+              counts[e.target.id] += 1;
+              this.wand = e.target.value;
+              this.twiceClicked = false;
+              this.buttonClicked = true;
+            }
+          },
+          reset() {
+            this.buttonClicked = false;
+            this.twiceClicked = false;
+            counts = [0, 0, 0];
+            this.reseted = true;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

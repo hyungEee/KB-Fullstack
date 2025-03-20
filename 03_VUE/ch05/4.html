@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      마법 주문:
+      <input
+        type="text"
+        v-model="magic"
+        :value="magic"
+        @keyup.enter="entered"
+      /><br />
+      <div>{{ans}}</div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            magic: "",
+            ans: "",
+            count: 0,
+            prev: "",
+          };
+        },
+        computed: {},
+        methods: {
+          entered(e) {
+            if (e.target.value == prev) {
+            }
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
