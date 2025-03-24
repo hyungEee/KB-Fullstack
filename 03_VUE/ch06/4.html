@@ -31,6 +31,10 @@
         top: 17%;
         right: 3%;
       }
+      .msg {
+        margin-top: 30px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -40,17 +44,29 @@
         v-for="(r,i) in restaurants"
         :key="i"
         class="col-md-3 card m-2 flex-fill"
+        :class="bookmarked(r)"
       >
         <div class="card-body">
           <h4 class="card-title">{{r.name}}</h4>
           <div class="card-text">⭐평균 평점: {{avg(r)}}</div>
           <div class="card-text">📝리뷰 수: {{r.reviews.length}}</div>
-          <i v-if="r.isFavorite" class="fa-solid fa-bookmark text-warning"></i>
-          <i v-else class="fa-regular fa-bookmark text-secondary"></i>
+          <i
+            v-if="r.isFavorite"
+            class="fa-solid fa-bookmark text-warning"
+            @click.stop="bookmarkClicked(r)"
+          ></i>
+          <i
+            v-else
+            class="fa-regular fa-bookmark text-secondary"
+            @click.stop="bookmarkClicked(r)"
+          ></i>
         </div>
       </div>
       <hr class="mt-5 mb-4" />
       <h1 class="mb-3">⭐ 즐겨찾기 목록</h1>
+      <div class="msg" v-if="selectedRes.length==0">
+        즐겨찾기한 맛집이 없습니당.
+      </div>
       <div
         v-for="(r,i) in selectedRes"
         :key="i"
@@ -106,6 +122,14 @@
               r.reviews.reduce((sum, current) => sum + current) /
               r.reviews.length
             ).toFixed(2);
+          },
+          bookmarkClicked(r) {
+            r.isFavorite = !r.isFavorite;
+          },
+          bookmarked(r) {
+            if (r.isFavorite) {
+              return "bookmarked";
+            }
           },
         },
       }).mount("#app");
