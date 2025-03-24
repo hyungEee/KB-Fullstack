@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+    <style>
+      .bookmarked {
+        border: 2px solid gold;
+        box-shadow: 3px 3px 1px gold;
+      }
+      .card-body {
+        position: relative;
+      }
+      .fa-bookmark {
+        position: absolute;
+        top: 17%;
+        right: 3%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container row m-3">
+      <h1>세종대 맛집 즐겨찾기 기능 🍽</h1>
+      <div
+        v-for="(r,i) in restaurants"
+        :key="i"
+        class="col-md-3 card m-2 flex-fill"
+      >
+        <div class="card-body">
+          <h4 class="card-title">{{r.name}}</h4>
+          <div class="card-text">⭐평균 평점: {{avg(r)}}</div>
+          <div class="card-text">📝리뷰 수: {{r.reviews.length}}</div>
+          <i v-if="r.isFavorite" class="fa-solid fa-bookmark text-warning"></i>
+          <i v-else class="fa-regular fa-bookmark text-secondary"></i>
+        </div>
+      </div>
+      <hr class="mt-5 mb-4" />
+      <h1 class="mb-3">⭐ 즐겨찾기 목록</h1>
+      <div
+        v-for="(r,i) in selectedRes"
+        :key="i"
+        class="bookmarked col-md-3 card m-2 flex-fill"
+      >
+        <div class="card-body">
+          <h4 class="card-title">{{r.name}}</h4>
+          <div class="card-text">⭐평균 평점: {{avg(r)}}</div>
+          <div class="card-text">📝리뷰 수: {{r.reviews.length}}</div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: "App",
+        data() {
+          return {
+            restaurants: [
+              { name: "빠오즈푸", reviews: [4.7, 4.8, 4.6], isFavorite: false },
+              {
+                name: "시홍쓰",
+                reviews: [4.2, 4.0, 4.1, 4.2, 4.2],
+                isFavorite: false,
+              },
+              {
+                name: "오사이초밥",
+                reviews: [3.7, 3.6, 3.8],
+                isFavorite: true,
+              },
+              {
+                name: "은혜즉석떡볶이",
+                reviews: [4.5, 4.6, 4.5],
+                isFavorite: true,
+              },
+              { name: "우화등선", reviews: [3.2, 3.1], isFavorite: false },
+              {
+                name: "세종원",
+                reviews: [3.9, 4.0, 3.8, 3.95],
+                isFavorite: true,
+              },
+            ],
+          };
+        },
+        computed: {
+          selectedRes() {
+            return this.restaurants.filter((res) => res.isFavorite === true);
+          },
+        },
+        methods: {
+          avg(r) {
+            return (
+              r.reviews.reduce((sum, current) => sum + current) /
+              r.reviews.length
+            ).toFixed(2);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
