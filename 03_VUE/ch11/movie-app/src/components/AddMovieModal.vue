@@ -1,28 +1,39 @@
 <template>
-  <div class="modal modal-container">
+  <div class="modal-container">
     <div class="input-container">
       <div style="font-size: 2rem">📽</div>
-      <input type="text" placeholder="제목" />
-      <input type="text" placeholder="연도" />
-      <input type="text" placeholder="감독" />
-      <textarea type="text" placeholder="줄거리"></textarea>
-      <input type="text" placeholder="포스터 이미지 URL" />
+      <input type="text" placeholder="제목" v-model="newMovie.title" />
+      <input type="number" placeholder="연도" v-model="newMovie.year" />
+      <input type="text" placeholder="감독" v-model="newMovie.director" />
+      <textarea
+        type="text"
+        placeholder="줄거리"
+        v-model="newMovie.description"
+      ></textarea>
+      <input
+        type="text"
+        placeholder="포스터 이미지 URL"
+        v-model="newMovie.poster"
+      />
     </div>
     <div class="btn-container">
-      <button>등록</button>
-      <button>닫기</button>
+      <button @click="$emit('movie-added', newMovie)">등록</button>
+      <button @click="$emit('close')">닫기</button>
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { reactive } from "vue";
+const newMovie = reactive({
+  title: "",
+  year: 0,
+  director: "",
+  description: "",
+  poster: "",
+});
+</script>
 <style scoped>
-* {
-  background-color: white;
-  color: black;
-}
 .modal-container {
-  position: absolute;
-  top: 10%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -30,6 +41,8 @@
   height: 400px;
   padding: 20px;
   gap: 20px;
+  background-color: white;
+  color: black;
 }
 .input-container {
   display: flex;
@@ -39,6 +52,7 @@
 input {
   height: 25px;
   border: 1px solid gray;
+  border-radius: 5px;
 }
 textarea {
   height: 45px;
