@@ -1,14 +1,14 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import axios from "axios";
 import { provide, ref } from "vue";
 
-const movies = ref(null);
+const movies = ref([]);
 const requestAPI = async () => {
   const url = "/api/movies";
   try {
     const response = await axios.get(url);
-    movies.value = response.data;
+    movies.value = [...response.data];
   } catch (e) {
     console.log("## 에러발생");
     console.log(e);
@@ -16,14 +16,10 @@ const requestAPI = async () => {
 };
 requestAPI();
 provide("movies", movies);
+provide("requestAPI", requestAPI);
 </script>
 <template>
   <RouterView />
 </template>
 
-<style>
-* {
-  background-color: rgb(34, 34, 34);
-  color: white;
-}
-</style>
+<style></style>
