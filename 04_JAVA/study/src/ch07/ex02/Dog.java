@@ -1,0 +1,8 @@
+package ch07.ex02;
+
+public class Dog extends Animal{
+    @Override
+    public void sound() {
+        System.out.println("멍멍");
+    }
+}
