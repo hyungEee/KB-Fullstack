@@ -1,15 +1,34 @@
+<style>
+.layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+</style>
 <template>
-  <div>
-    <Header></Header>
-    <router-view></router-view>
+  <Header></Header>
+  <div class="layout">
+    <router-view name="left"></router-view>
+    <main class="main">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 <script>
 import Header from "@/components/Header.vue";
-
+import { provide, reactive } from "vue";
 export default {
   name: "App",
   components: { Header },
+  setup() {
+    const cart = reactive([]);
+    const addToCart = (product) => {
+      cart.push(product);
+    };
+    provide("cart", cart);
+    provide("addToCart", addToCart);
+    return { cart, addToCart };
+  },
 };
 </script>
 <style>

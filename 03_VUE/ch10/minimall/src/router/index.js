@@ -3,6 +3,9 @@ import Cart from "@/pages/Cart.vue";
 import Home from "@/pages/Home.vue";
 import Products from "@/pages/Products.vue";
 import ProductDetail from "@/pages/ProductDetail.vue";
+import CategoryFilter from "@/pages/CategoryFilter.vue";
+import ProductDescription from "@/pages/ProductDescription.vue";
+import ProductReview from "@/pages/ProductReview.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,7 +18,7 @@ const router = createRouter({
     {
       path: "/products",
       name: "products",
-      component: Products,
+      components: { default: Products, left: CategoryFilter },
     },
     {
       path: "/cart",
@@ -25,8 +28,21 @@ const router = createRouter({
     {
       path: "/products/:id",
       component: ProductDetail,
+      children: [
+        {
+          path: "",
+          name: "ProductDescription",
+          component: ProductDescription,
+        },
+        {
+          path: "review",
+          name: "ProductReview",
+          component: ProductReview,
+        },
+      ],
     },
   ],
 });
 
 export default router;
+
