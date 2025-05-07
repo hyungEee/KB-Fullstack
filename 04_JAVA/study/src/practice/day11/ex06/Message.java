@@ -18,4 +18,8 @@ public class Message {
     public String toString() {
         return "["+sender+"] → ["+receiver+"]\n\""+content+"\"";
     }
+
+    public String getContent() {
+        return content;
+    }
 }
